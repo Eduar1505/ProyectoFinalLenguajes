@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+
   LoginPage({super.key});
   
 
@@ -16,31 +16,30 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                controller : emailController,
-                decoration: const InputDecoration(labelText: 'Correo Electronico'),
-              ),
 
               TextField(
-                controller: passwordController,
-                decoration: const InputDecoration(labelText: 'Contraseña'),
-                obscureText: true,
+                controller : emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Correo Electronico',
+                  hintText: 'Ingresa tu correo institucional',
+                  ),
               ),
 
               const SizedBox(height: 20,),
 
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/home');
-                },
-                child: const Text('Iniciar Sesion')
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/register');
-                },
-                child: const Text('Registrarse'))
+                onPressed: (){
+                  String email = emailController.text.trim();
 
+                  if ( email.endsWith('@unah.hn')){
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Por favor, ingresa un correo institucional valido.')),
+                    );
+                  }
+                }, 
+                child: const Text('Iniciar Sesion'))
             ],
           ),
       ),
