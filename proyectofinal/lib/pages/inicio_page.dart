@@ -5,15 +5,20 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.event_note, size: 100, color: Colors.blue,),
-            SizedBox(height: 20,),
-            Text('MiAgenda', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
-            SizedBox(height: 50,),
+            const Icon(Icons.event_note, size: 100, color: Colors.blue,),
+            const SizedBox(height: 20,),
+            const Text('MiAgenda', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
+            const SizedBox(height: 50,),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/login');
+              }, 
+              child: const Text('Iniciar'))
           ]
         ),
       ),
