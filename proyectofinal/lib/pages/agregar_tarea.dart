@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -21,7 +21,7 @@ class _AgregarTareaPageState extends State<AgregarTareaPage> {
   String _descripcion = '';
   DateTime _fecha = DateTime.now();
   TimeOfDay _hora = TimeOfDay.now();
-  bool _notificar = false;
+  // bool _notificar = false;
  
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _AgregarTareaPageState extends State<AgregarTareaPage> {
       _descripcion = widget.tarea!['descripcion'];
       _fecha = DateTime.parse(widget.tarea!['fecha']);
       _hora = TimeOfDay(hour: int.parse(widget.tarea!['hora'].split(":")[0]), minute: int.parse(widget.tarea!['hora'].split(":")[1]));
-      _notificar = widget.tarea!['notificacionId'] != null;
+      // _notificar = widget.tarea!['notificacionId'] != null;
     }
   }
 
@@ -81,7 +81,7 @@ class _AgregarTareaPageState extends State<AgregarTareaPage> {
                     trailing: Icon(Icons.access_time),
                     onTap: () => _selectTime(context),
                   ),
-                  Row(
+                  /* Row(
                     children: [
                       const Text('Notificarme'),
                       Switch(
@@ -93,7 +93,7 @@ class _AgregarTareaPageState extends State<AgregarTareaPage> {
                         },
                       )
                     ],
-                    ),
+                    ), */
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => _agregarTarea(context),
@@ -136,16 +136,15 @@ class _AgregarTareaPageState extends State<AgregarTareaPage> {
 void _agregarTarea(BuildContext context) {
   if(_formKey.currentState!.validate()) {
     final tarea = {
-      'id': widget.tarea?['id'],
       'nombre': _nombre,
       'descripcion': _descripcion,
       'fecha': _fecha.toIso8601String(),
       'hora': _formatHora(_hora),
     };
 
-    if(_notificar){
+    /* if(_notificar){
       _programarNotificacion(tarea);
-    }
+    }*/
 
     widget.onTareaAgregada(tarea);
 
