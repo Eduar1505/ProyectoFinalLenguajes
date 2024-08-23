@@ -44,19 +44,19 @@ class _HomePageState extends State<HomePage> {
 
   void _agregarTarea(Map<String, dynamic> tarea) async {
     await DBHelper().insertarTarea(tarea);
-    _scheduleNotification(tarea);
+    // _scheduleNotification(tarea);
     _cargarTareas();
   }
 
   void _editarTarea(Map<String, dynamic> tarea) async {
     await DBHelper().actualizarTarea(tarea);
-    _scheduleNotification(tarea);
+    // _scheduleNotification(tarea);
     _cargarTareas();
   }
 
   void _eliminarTarea(int id) async {
     final tarea = _tareas.firstWhere((element) => element['id'] == id);
-    await _cancelNotification(tarea['notificationId']);
+    // await _cancelNotification(tarea['notificationId']);
     await DBHelper().eliminarTarea(id);
     _cargarTareas();
   }
@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _scheduleNotification(Map<String, dynamic> tarea) async {
+  /* Future<void> _scheduleNotification(Map<String, dynamic> tarea) async {
     final notificationId = tarea['id'] ?? DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
     final scheduledNotificationDateTime = DateTime.parse(tarea['fecha']).add(
@@ -197,9 +197,6 @@ class _HomePageState extends State<HomePage> {
         if (notificacionId != null) {
           await _flutterLocalNotificationsPlugin.cancel(notificacionId);
         }
-      }
-
-
-
+      } */
 
 }
